@@ -9,10 +9,39 @@ body {
     font-size: 0.7em !important;
 }
 
+.title {
+    font-size: 2.0em;
+    font-weight: bold;
+    margin-bottom: 32px;
+}
+
+.sub-title {
+    font-size: 1.25em;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.sub-sub-title {
+    font-size: 1.1em;
+    margin-bottom: 8px;
+}
+
 .form {
-    margin: 32px 0;
+    margin: 0 0 32px 0;
 }
 
 .form__label {
     margin: 0 0 0 8px;
+}
+
+.form__checkbox-6 {
+    margin: 0 16px 0 0;
+}
+
+.form__checkbox-group {
+    border: 1px solid #000;
+}
+
+.form__textarea {
+    padding: 4px 8px !important;
 }
