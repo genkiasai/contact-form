@@ -6,9 +6,13 @@
 body {
     width: 80%;
     margin: 0 auto !important;
-    font-size: 0.8em !important;
+    font-size: 0.7em !important;
 }
 
 .form {
     margin: 32px 0;
+}
+
+.form__label {
+    margin: 0 0 0 8px;
 }
