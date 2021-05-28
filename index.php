@@ -15,7 +15,7 @@
             <div class="form form-1">
                 <div class="row form__item form__item-1">
                     <h3 class="sub-sub-title col-12 p-0">依頼タイトル</h3>
-                    <input class="form__input form__text-1 col-12 m-0 p-0" type="text" placeholder="例：アウトドア用品店のホームページ制作">
+                    <input class="form__text form__text-1 col-12 m-0" type="text" placeholder="例：アウトドア用品店のホームページ制作">
                 </div>
             </div>
 
@@ -235,7 +235,7 @@
             <div class="form form-14">
                 <div class="row">
                     <h3 class="sub-sub-title form__item form__item-14 col-12 p-0">その他</h3>
-                    <textarea class="col-12 m-0 p-0" name="etc" id="etc" cols="30" rows="4" placeholder="補足説明・ご質問・ご要望など"></textarea>
+                    <textarea class="form__textarea form__textarea-14 col-12 m-0" name="etc" id="etc" cols="30" rows="4" placeholder="補足説明・ご質問・ご要望など"></textarea>
                 </div>
             </div>
         </div>
@@ -244,20 +244,29 @@
             <h2 class="sub-title">個人情報</h2>
             <div class="form form-15">
                 <div class="row">
-                    <h3 class="sub-sub-title form__item form__item-15 col-12 p-0">その他</h3>
-                    <textarea class="col-12 m-0 p-0" name="etc" id="etc" cols="30" rows="4" placeholder="補足説明・ご質問・ご要望など"></textarea>
+                    <h3 class="sub-sub-title form__item form__item-15 col-12 p-0">氏名</h3>
+                    <div class="row form__name_kanji col-12 m-0 mb-3 p-0">
+                        <span class="form__span-15 col-2 m-0 p-0">姓：</span><input class="form__name form__name-15 form__name-15-1 col-2" type="name" placeholder="山田">
+                        <span class="form__span-15 col-2 m-0 ml-3 p-0">名：</span><input class="form__name form__name-15 form__name-15-2 col-2" type="name" placeholder="太郎">
+                    </div>
+                    <br>
+                    <div class="row form__name_hira col-12 m-0 p-0">
+                        <span class="col-2 m-0 p-0">せい：</span><input class="form__name form__name-15 form__name-15-1 col-2" type="name" placeholder="せい">
+                        <span class="col-2 m-0 ml-3 p-0">めい：</span><input class="form__name form__name-15 form__name-15-2 col-2" type="name" placeholder="めい">
+                    </div>
+                    
                 </div>
             </div>
-            <div class="form form-14">
+            <div class="form form-16">
                 <div class="row">
-                    <h3 class="sub-sub-title form__item form__item-14 col-12 p-0">その他</h3>
-                    <textarea class="col-12 m-0 p-0" name="etc" id="etc" cols="30" rows="4" placeholder="補足説明・ご質問・ご要望など"></textarea>
+                    <h3 class="sub-sub-title form__item form__item-16 col-12 p-0">メールアドレス</h3>
+                    <input class="form__email form__email-16 form__email-16-2 col-12 m-0 p-0" type="email" placeholder="example@example.com">
                 </div>
             </div>
-            <div class="form form-14">
+            <div class="form form-17">
                 <div class="row">
-                    <h3 class="sub-sub-title form__item form__item-14 col-12 p-0">その他</h3>
-                    <textarea class="col-12 m-0 p-0" name="etc" id="etc" cols="30" rows="4" placeholder="補足説明・ご質問・ご要望など"></textarea>
+                    <h3 class="sub-sub-title form__item form__item-17 col-12 p-0">電話番号（ハイフン無し）</h3>
+                    <input class="form__email form__email-16 form__email-16-2 col-12 m-0 p-0" type="tel" placeholder="09012345678">
                 </div>
             </div>
             <div class="form form-14">
