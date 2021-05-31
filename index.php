@@ -209,6 +209,8 @@
             $material = $_POST["material"];
             if (isset($_POST["material_kind"])) {
                 $material_kind = $_POST["material_kind"];
+            } else {
+                $material_kind = "";
             }
             $error["material"] = "off";
         }
@@ -381,7 +383,7 @@
         $target_age = implode(",", $target_age);
         $target_sex = implode(",", $target_sex);
         $request_range = implode(",", $request_range);
-        $material_kind = implode(",", $material_kind);
+        if ($material_kind !== "") {$material_kind = implode(",", $material_kind);} else {$material_kind = "";}
         $delivery_date = implode("-", $delivery_date);
         $request = $db->prepare("INSERT INTO request SET user_id=?, title=?, industry=?, site_type=?, goal=?, effect=?, effect_etc=?, target_age=?, target_sex=?, target_etc=?, page_len=?, responsive=?, url_ref=?, request_range=?, material=?, material_kind=?, delivery_method=?, delivery_date=?, support=?, etc=?");
         $request->execute(array(
@@ -406,7 +408,11 @@
             (int)$support,
             $etc
         ));
-
+        $to = "g.asai.bml@gmail.com";
+        $subject = "お問い合わせ";
+        $message = "お問い合わせがありました。/r/nuser_id:$user_id[id]/r/nお名前:$name[0]$name[1], $name[2]$name[3]/r/nemail:$email"; 
+        $header = "From: https://web-contents.site";
+        mb_send_mail($to, $subject, $message, $header);
         header("Location: ./thanks.php");
         exit();
     }
