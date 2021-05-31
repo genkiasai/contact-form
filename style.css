@@ -85,3 +85,18 @@ body {
     /* margin: 0 auto 24px auto;
     display: inherit; */
 }
+
+.personal-infomation {
+    height: 100px;
+    overflow: scroll;
+    border: 1px solid #000;
+}
+
+footer {
+    border-top: 1px solid #000;
+}
+
+footer p {
+    margin: 0;
+}
+

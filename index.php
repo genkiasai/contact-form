@@ -2,6 +2,10 @@
     session_start();
     require("./dbconnect.php");
 
+    // ---------------------
+    // 必須
+    // ---------------------
+
     // ご依頼タイトル
     // 送信ボタンが押されたとき
     if (!empty($_POST["send"])) {
@@ -81,6 +85,7 @@
         } else {
             // 入力情報を残す
             $effect = $_POST["effect"];
+            $effect_etc = $_POST["effect_etc"];
             $error["effect"] = "off";
         }
     } else {
@@ -98,6 +103,7 @@
         } else {
             // 入力情報を残す
             $target_age = $_POST["target_age"];
+            $target_etc = $_POST["target_etc"];
             $error["target_age"] = "off";
         }
     } else {
@@ -115,6 +121,7 @@
         } else {
             // 入力情報を残す
             $target_sex = $_POST["target_sex"];
+            $target_etc = $_POST["target_etc"];
             $error["target_sex"] = "off";
         }
     } else {
@@ -155,8 +162,8 @@
         $error["responsive"] = "off";
     }
     
-    // サイトの種類
     // 参考URL
+    // 送信ボタンが押されたとき
     if (!empty($_POST["send"])) {
         // 入力がなかったら
         if (empty($_POST["url_ref"])) {
@@ -172,8 +179,8 @@
         $error["url_ref"] = "off";
     }
     
-    // サイトの種類
     // ご依頼の範囲
+    // 送信ボタンが押されたとき
     if (!empty($_POST["send"])) {
         // 入力がなかったら
         if (empty($_POST["request_range"])) {
@@ -189,8 +196,8 @@
         $error["request_range"] = "off";
     }
     
-    // サイトの種類
     // 用意してある素材
+    // 送信ボタンが押されたとき
     if (!empty($_POST["send"])) {
         // 入力がなかったら
         if (empty($_POST["material"])) {
@@ -200,11 +207,211 @@
         } else {
             // 入力情報を残す
             $material = $_POST["material"];
+            if (isset($_POST["material_kind"])) {
+                $material_kind = $_POST["material_kind"];
+            }
             $error["material"] = "off";
         }
     } else {
         $error["material"] = "off";
     }
+    
+    // 納品方法
+    // 送信ボタンが押されたとき
+    if (!empty($_POST["send"])) {
+        // 入力がなかったら
+        if (empty($_POST["delivery_method"])) {
+            // エラーにする
+            $error["delivery_method"] = "on";
+        // 入力があったら
+        } else {
+            // 入力情報を残す
+            $delivery_method = $_POST["delivery_method"];
+            $error["delivery_method"] = "off";
+        }
+    } else {
+        $error["delivery_method"] = "off";
+    }
+    
+    // 納品後のサポート
+    // 送信ボタンが押されたとき
+    if (!empty($_POST["send"])) {
+        // 入力がなかったら
+        if (empty($_POST["support"])) {
+            // エラーにする
+            $error["support"] = "on";
+        // 入力があったら
+        } else {
+            // 入力情報を残す
+            $support = $_POST["support"];
+            $error["support"] = "off";
+        }
+    } else {
+        $error["support"] = "off";
+    }
+    
+    // 氏名
+    // 送信ボタンが押されたとき
+    if (!empty($_POST["send"])) {
+        // 入力情報を残す
+        $name = $_POST["name"];
+        // 入力がなかったら
+        if (empty($_POST["name"][0]) || empty($_POST["name"][1]) || empty($_POST["name"][2]) || empty($_POST["name"][3])) {
+            // エラーにする
+            $error["name"] = "on";
+        // 入力があったら
+        } else {
+            $error["name"] = "off";
+        }
+    } else {
+        $error["name"] = "off";
+    }
+    
+    // メールアドレス
+    // 送信ボタンが押されたとき
+    if (!empty($_POST["send"])) {
+        // 入力がなかったら
+        if (empty($_POST["email"])) {
+            // エラーにする
+            $error["email"] = "on";
+        // 入力があったら
+        } else {
+            // 入力情報を残す
+            $email = $_POST["email"];
+            $error["email"] = "off";
+        }
+    } else {
+        $error["email"] = "off";
+    }
+    
+    // 電話番号
+    // 送信ボタンが押されたとき
+    if (!empty($_POST["send"])) {
+        // 入力がなかったら
+        if (empty($_POST["tel"])) {
+            // エラーにする
+            $error["tel"] = "on";
+        // 入力があったら
+        } else {
+            // 入力情報を残す
+            $tel = $_POST["tel"];
+            $error["tel"] = "off";
+        }
+    } else {
+        $error["tel"] = "off";
+    }
+    
+    // 住所
+    // 送信ボタンが押されたとき
+    if (!empty($_POST["send"])) {
+        // 入力情報を残す
+        $address = $_POST["address"];
+        // 入力がなかったら
+        if (empty($_POST["address"][0]) || empty($_POST["address"][1]) || empty($_POST["address"][2]) || empty($_POST["address"][3])) {
+            // エラーにする
+            $error["address"] = "on";
+        // 入力があったら
+        } else {
+            $error["address"] = "off";
+        }
+    } else {
+        $error["address"] = "off";
+    }
+    
+    // 個人情報の取扱についての同意
+    // 送信ボタンが押されたとき
+    if (!empty($_POST["send"])) {
+        // 入力がなかったら
+        if (empty($_POST["agree"])) {
+            // エラーにする
+            $error["agree"] = "on";
+        // 入力があったら
+        } else {
+            // 入力情報を残す
+            $agree = $_POST["agree"];
+            $error["agree"] = "off";
+        }
+    } else {
+        $error["agree"] = "off";
+    }
+
+    // ---------------------
+    // 任意
+    // ---------------------
+
+    // 納期
+    // 送信ボタンが押されたとき
+    if (!empty($_POST["send"])) {
+        // 入力情報を残す
+        $delivery_date = $_POST["delivery_date"];
+    }
+
+    // その他
+    // 送信ボタンが押されたとき
+    if (!empty($_POST["send"])) {
+        // 入力情報を残す
+        $etc = $_POST["etc"];
+    }
+
+    // ---------------------
+    // データベース書き込み
+    // ---------------------
+    $error_exist = array_search("on", $error);
+    if (!empty($_POST["send"]) && $error_exist === false) {
+        // ユーザ情報
+        $user = $db->prepare("INSERT INTO user SET first_name_kanji=?, last_name_kanji=?, first_name_hiragana=?, last_name_hiragana=?, email=?, tel=?, address_zip=?, address_prefecture=?, address_city=?, address_last=?");
+        $user->execute(array(
+            $name[0],
+            $name[1],
+            $name[2],
+            $name[3],
+            $email,
+            $tel,
+            $address[0],
+            $address[1],
+            $address[2],
+            $address[3],
+        ));
+
+        $users_id = $db->prepare("SELECT * FROM user ORDER BY id DESC LIMIT 1");
+        $users_id->execute();
+        $user_id = $users_id->fetch();
+        // 依頼内容
+        $effect = implode(",", $effect);
+        $target_age = implode(",", $target_age);
+        $target_sex = implode(",", $target_sex);
+        $request_range = implode(",", $request_range);
+        $material_kind = implode(",", $material_kind);
+        $delivery_date = implode("-", $delivery_date);
+        $request = $db->prepare("INSERT INTO request SET user_id=?, title=?, industry=?, site_type=?, goal=?, effect=?, effect_etc=?, target_age=?, target_sex=?, target_etc=?, page_len=?, responsive=?, url_ref=?, request_range=?, material=?, material_kind=?, delivery_method=?, delivery_date=?, support=?, etc=?");
+        $request->execute(array(
+            (int)$user_id["id"],
+            $title,
+            (int)$industry,
+            (int)$site_type,
+            $goal,
+            $effect,
+            $effect_etc,
+            $target_age,
+            $target_sex,
+            $target_etc,
+            (int)$page_len,
+            (int)$responsive,
+            $url_ref,
+            $request_range,
+            (int)$material,
+            $material_kind,
+            (int)$delivery_method,
+            $delivery_date,
+            (int)$support,
+            $etc
+        ));
+
+        header("Location: ./thanks.php");
+        exit();
+    }
+
+
 
 ?>
 
@@ -217,10 +424,10 @@
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
-    <title>お問い合わせフォーム（仮）</title>
+    <title>お問い合わせフォーム</title>
 </head>
 <body>
-    <h1 class="title">お問い合わせフォーム（仮）</h1>
+    <h1 class="title">お問い合わせフォーム</h1>
     <form action="" method="POST">
         <div class="request-detail">
             <h2 class="sub-title sub-title-request">ご依頼内容</h2>
@@ -337,7 +544,7 @@
                     <div class="form__checkbox-5 col-12 m-0 mb-1 p-0"><input class="form__checkbox form__checkbox-5-5" id="form__checkbox-5-5" type="checkbox" name="effect[4]" value="5" <?php if (isset($effect[4]) && $effect[4] === "5") { echo "checked";} ?>><label class="form__label" for="form__checkbox-5-5">スマートフォンに対応させたい</label></div>
                     <div class="form__checkbox-5 col-12 m-0 mb-1 p-0"><input class="form__checkbox form__checkbox-5-6" id="form__checkbox-5-6" type="checkbox" name="effect[5]" value="6" <?php if (isset($effect[5]) && $effect[5] === "6") { echo "checked";} ?>><label class="form__label" for="form__checkbox-5-6">サイトが古いのでリニューアルしたい</label></div>
                     <div class="form__checkbox-5 col-12 m-0 mb-1 p-0"><input class="form__checkbox form__checkbox-5-7" id="form__checkbox-5-7" type="checkbox" name="effect[6]" value="7" <?php if (isset($effect[6]) && $effect[6] === "7") { echo "checked";} ?>><label class="form__label" for="form__checkbox-5-7">多言語対応で海外展開をしたい</label></div>
-                    <textarea class="form__textarea form__textarea-5 col-12 m-0" name="effect-etc" id="" cols="30" rows="10" placeholder="その他の期待する効果がある場合は入力してください"></textarea>
+                    <textarea class="form__textarea form__textarea-5 col-12 m-0" name="effect_etc" id="" cols="30" rows="10" placeholder="その他の期待する効果がある場合は入力してください"><?php if (isset($effect_etc)) {echo $effect_etc;} ?></textarea>
                 </div>
             </div>
 
@@ -365,7 +572,7 @@
                     </div>
                     <div class="col-12 m-0 p-0">
                         <span class="form__item-6-title form__item-6-title-3">その他</span>
-                        <div><textarea class="form__textarea form__textarea-6 col-12 m-0" name="target" id="target_etc" cols="30" rows="2" placeholder="その他ターゲット像がある場合は入力してください。"></textarea></div>
+                        <div><textarea class="form__textarea form__textarea-6 col-12 m-0" name="target_etc" id="target_etc" cols="30" rows="2" placeholder="その他ターゲット像がある場合は入力してください。"><?php if (isset($target_etc)) {echo $target_etc;} ?></textarea></div>
                     </div>
                 </div>
             </div>
@@ -430,10 +637,10 @@
                     <span class="m-0 mr-3 mb-1 p-0"><input class="form__radio form__radio-11" id="form__radio-11-1" type="radio" name="material" value="1" <?php if (isset($material) && $material === "1") { echo "checked";} ?>><label class="form__label" for="form__radio-11-1">用意している</label></span>
                     <span class="m-0 mb-1 p-0"><input class="form__radio form__radio-11" id="form__radio-11-2" type="radio" name="material" value="2" <?php if (isset($material) && $material === "2") { echo "checked";} ?>><label class="form__label" for="form__radio-11-2">用意していない<label></span>
                     <div class="form__checkbox-group col-12 p-2">
-                        <span class="form__checkbox-11 m-0 mr-2 mb-1 p-0"><input class="form__checkbox form__checkbox-11-1" id="form__checkbox-11-1" type="checkbox" name="material_kind" value="1" <?php if (isset($material_kind) && $material_kind === "1") { echo "checked";} ?>><label class="form__label" for="form__checkbox-11-1">テキスト</label></span>
-                        <span class="form__checkbox-11 m-0 mr-2 mb-1 p-0"><input class="form__checkbox form__checkbox-11-2" id="form__checkbox-11-2" type="checkbox" name="material_kind" value="2" <?php if (isset($material_kind) && $material_kind === "2") { echo "checked";} ?>><label class="form__label" for="form__checkbox-11-2">写真</label></span>
-                        <span class="form__checkbox-11 m-0 mr-2 mb-1 p-0"><input class="form__checkbox form__checkbox-11-3" id="form__checkbox-11-3" type="checkbox" name="material_kind" value="3" <?php if (isset($material_kind) && $material_kind === "3") { echo "checked";} ?>><label class="form__label" for="form__checkbox-11-3">イラスト</label></span>
-                        <span class="form__checkbox-11 m-0 mr-2 mb-1 p-0"><input class="form__checkbox form__checkbox-11-4" id="form__checkbox-11-4" type="checkbox" name="material_kind" value="4" <?php if (isset($material_kind) && $material_kind === "4") { echo "checked";} ?>><label class="form__label" for="form__checkbox-11-4">動画</label></span>
+                        <span class="form__checkbox-11 m-0 mr-2 mb-1 p-0"><input class="form__checkbox form__checkbox-11-1" id="form__checkbox-11-1" type="checkbox" name="material_kind[0]" value="1" <?php if (isset($material_kind[0]) && $material_kind[0] === "1") { echo "checked";} ?>><label class="form__label" for="form__checkbox-11-1">テキスト</label></span>
+                        <span class="form__checkbox-11 m-0 mr-2 mb-1 p-0"><input class="form__checkbox form__checkbox-11-2" id="form__checkbox-11-2" type="checkbox" name="material_kind[1]" value="2" <?php if (isset($material_kind[1]) && $material_kind[1] === "2") { echo "checked";} ?>><label class="form__label" for="form__checkbox-11-2">写真</label></span>
+                        <span class="form__checkbox-11 m-0 mr-2 mb-1 p-0"><input class="form__checkbox form__checkbox-11-3" id="form__checkbox-11-3" type="checkbox" name="material_kind[2]" value="3" <?php if (isset($material_kind[2]) && $material_kind[2] === "3") { echo "checked";} ?>><label class="form__label" for="form__checkbox-11-3">イラスト</label></span>
+                        <span class="form__checkbox-11 m-0 mr-2 mb-1 p-0"><input class="form__checkbox form__checkbox-11-4" id="form__checkbox-11-4" type="checkbox" name="material_kind[3]" value="4" <?php if (isset($material_kind[3]) && $material_kind[3] === "4") { echo "checked";} ?>><label class="form__label" for="form__checkbox-11-4">動画</label></span>
                     </div>
                 </div>
             </div>
@@ -441,77 +648,79 @@
             <div class="form form-12">
                 <div class="row">
                 <div class="col-12 p-0"><h3 class="sub-sub-title form__item form__item-12 p-0">納品方法</h3><span class="mast">必須</span></div>
-                    <div class="col-12 m-0 mb-1 p-0"><input class="form__radio form__radio-12" id="form__radio-12-1" type="radio" name="delivery" value="1"><label class="form__label" for="form__radio-12-1">ZIPファイルによる納品</label></div>
-                    <div class="col-12 m-0 mb-1 p-0"><input class="form__radio form__radio-12" id="form__radio-12-2" type="radio" name="delivery" value="2"><label class="form__label" for="form__radio-12-2">オンラインストレージへのアップロード</label></div>
-                    <div class="col-12 m-0 mb-1 p-0"><input class="form__radio form__radio-12" id="form__radio-12-3" type="radio" name="delivery" value="3"><label class="form__label" for="form__radio-12-3">指定のサーバーへアップロード</label></div>
-                    <div class="col-12 m-0 mb-1 p-0"><input class="form__radio form__radio-12" id="form__radio-12-4" type="radio" name="delivery" value="4"><label class="form__label" for="form__radio-12-4">相談して決める</label></div>
+                <?php if ($error["delivery_method"] === "on") {echo "<div style='color:red' class='col-12 p-0'>*入力してください</div>";} ?>
+                    <div class="col-12 m-0 mb-1 p-0"><input class="form__radio form__radio-12" id="form__radio-12-1" type="radio" name="delivery_method" value="1" <?php if (isset($delivery_method) && $delivery_method === "1") { echo "checked";} ?>><label class="form__label" for="form__radio-12-1">ZIPファイルによる納品</label></div>
+                    <div class="col-12 m-0 mb-1 p-0"><input class="form__radio form__radio-12" id="form__radio-12-2" type="radio" name="delivery_method" value="2" <?php if (isset($delivery_method) && $delivery_method === "2") { echo "checked";} ?>><label class="form__label" for="form__radio-12-2">オンラインストレージへのアップロード</label></div>
+                    <div class="col-12 m-0 mb-1 p-0"><input class="form__radio form__radio-12" id="form__radio-12-3" type="radio" name="delivery_method" value="3" <?php if (isset($delivery_method) && $delivery_method === "3") { echo "checked";} ?>><label class="form__label" for="form__radio-12-3">指定のサーバーへアップロード</label></div>
+                    <div class="col-12 m-0 mb-1 p-0"><input class="form__radio form__radio-12" id="form__radio-12-4" type="radio" name="delivery_method" value="4" <?php if (isset($delivery_method) && $delivery_method === "4") { echo "checked";} ?>><label class="form__label" for="form__radio-12-4">相談して決める</label></div>
                 </div>
             </div>
 
             <div class="form form-13">
                 <div class="row">
                 <div class="col-12 p-0"><h3 class="sub-sub-title form__item form__item-13 p-0">納品後のサポート</h3><span class="mast">必須</span></div>
-                    <div class="col-12 m-0 mb-1 p-0"><input class="form__radio form__radio-13" id="form__radio-13-1" type="radio" name="support" value="1"><label class="form__label" for="form__radio-13-1">希望する</label></div>
-                    <div class="col-12 m-0 mb-1 p-0"><input class="form__radio form__radio-13" id="form__radio-13-2" type="radio" name="support" value="2"><label class="form__label" for="form__radio-13-2">希望しない</label></div>
-                    <div class="col-12 m-0 mb-1 p-0"><input class="form__radio form__radio-13" id="form__radio-13-3" type="radio" name="support" value="3"><label class="form__label" for="form__radio-13-3">相談して決める</label></div>
+                <?php if ($error["support"] === "on") {echo "<div style='color:red' class='col-12 p-0'>*入力してください</div>";} ?>
+                    <div class="col-12 m-0 mb-1 p-0"><input class="form__radio form__radio-13" id="form__radio-13-1" type="radio" name="support" value="1" <?php if (isset($support) && $support === "1") { echo "checked";} ?>><label class="form__label" for="form__radio-13-1">希望する</label></div>
+                    <div class="col-12 m-0 mb-1 p-0"><input class="form__radio form__radio-13" id="form__radio-13-2" type="radio" name="support" value="2" <?php if (isset($support) && $support === "2") { echo "checked";} ?>><label class="form__label" for="form__radio-13-2">希望しない</label></div>
+                    <div class="col-12 m-0 mb-1 p-0"><input class="form__radio form__radio-13" id="form__radio-13-3" type="radio" name="support" value="3" <?php if (isset($support) && $support === "3") { echo "checked";} ?>><label class="form__label" for="form__radio-13-3">相談して決める</label></div>
                 </div>
             </div>
 
             <div class="form form-14">
                 <div class="row">
                 <div class="col-12 p-0"><h3 class="sub-sub-title form__item form__item-13 p-0">納期</h3><span class="any">任意</span></div>
-                    <select name="delivery_year" id="delivery_year" name="delivery">
-                        <option value="2021">2021</option>
-                        <option value="2022">2022</option>
+                    <select class="delivery_year" id="delivery_year" name="delivery_date[0]">
+                        <option value="2021" <?php if (isset($delivery_date[0]) && $delivery_date[0] === "2021") { echo "selected";} ?>>2021</option>
+                        <option value="2022" <?php if (isset($delivery_date[0]) && $delivery_date[0] === "2022") { echo "selected";} ?>>2022</option>
                     </select>
                     年
-                    <select name="delivery_month" id="delivery_month" name="delivery">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
+                    <select class="delivery_month" id="delivery_month" name="delivery_date[1]">
+                        <option value="1" <?php if (isset($delivery_date[1]) && $delivery_date[1] === "1") { echo "selected";} ?>>1</option>
+                        <option value="2" <?php if (isset($delivery_date[1]) && $delivery_date[1] === "2") { echo "selected";} ?>>2</option>
+                        <option value="3" <?php if (isset($delivery_date[1]) && $delivery_date[1] === "3") { echo "selected";} ?>>3</option>
+                        <option value="4" <?php if (isset($delivery_date[1]) && $delivery_date[1] === "4") { echo "selected";} ?>>4</option>
+                        <option value="5" <?php if (isset($delivery_date[1]) && $delivery_date[1] === "5") { echo "selected";} ?>>5</option>
+                        <option value="6" <?php if (isset($delivery_date[1]) && $delivery_date[1] === "6") { echo "selected";} ?>>6</option>
+                        <option value="7" <?php if (isset($delivery_date[1]) && $delivery_date[1] === "7") { echo "selected";} ?>>7</option>
+                        <option value="8" <?php if (isset($delivery_date[1]) && $delivery_date[1] === "8") { echo "selected";} ?>>8</option>
+                        <option value="9" <?php if (isset($delivery_date[1]) && $delivery_date[1] === "9") { echo "selected";} ?>>9</option>
+                        <option value="10" <?php if (isset($delivery_date[1]) && $delivery_date[1] === "10") { echo "selected";} ?>>10</option>
+                        <option value="11" <?php if (isset($delivery_date[1]) && $delivery_date[1] === "11") { echo "selected";} ?>>11</option>
+                        <option value="12" <?php if (isset($delivery_date[1]) && $delivery_date[1] === "12") { echo "selected";} ?>>12</option>
                     </select>
                     月
-                    <select name="delivery_day" id="delivery_day" name="delivery">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18</option>
-                        <option value="19">19</option>
-                        <option value="20">20</option>
-                        <option value="21">21</option>
-                        <option value="22">22</option>
-                        <option value="23">23</option>
-                        <option value="24">24</option>
-                        <option value="25">25</option>
-                        <option value="26">26</option>
-                        <option value="27">27</option>
-                        <option value="28">28</option>
-                        <option value="29">29</option>
-                        <option value="30">30</option>
-                        <option value="31">31</option>
+                    <select class="delivery_day" id="delivery_day" name="delivery_date[2]">
+                        <option value="1" <?php if (isset($delivery_date[2]) && $delivery_date[2] === "1") { echo "selected";} ?>>1</option>
+                        <option value="2" <?php if (isset($delivery_date[2]) && $delivery_date[2] === "2") { echo "selected";} ?>>2</option>
+                        <option value="3" <?php if (isset($delivery_date[2]) && $delivery_date[2] === "3") { echo "selected";} ?>>3</option>
+                        <option value="4" <?php if (isset($delivery_date[2]) && $delivery_date[2] === "4") { echo "selected";} ?>>4</option>
+                        <option value="5" <?php if (isset($delivery_date[2]) && $delivery_date[2] === "5") { echo "selected";} ?>>5</option>
+                        <option value="6" <?php if (isset($delivery_date[2]) && $delivery_date[2] === "6") { echo "selected";} ?>>6</option>
+                        <option value="7" <?php if (isset($delivery_date[2]) && $delivery_date[2] === "7") { echo "selected";} ?>>7</option>
+                        <option value="8" <?php if (isset($delivery_date[2]) && $delivery_date[2] === "8") { echo "selected";} ?>>8</option>
+                        <option value="9" <?php if (isset($delivery_date[2]) && $delivery_date[2] === "9") { echo "selected";} ?>>9</option>
+                        <option value="10" <?php if (isset($delivery_date[2]) && $delivery_date[2] === "10") { echo "selected";} ?>>10</option>
+                        <option value="11" <?php if (isset($delivery_date[2]) && $delivery_date[2] === "11") { echo "selected";} ?>>11</option>
+                        <option value="12" <?php if (isset($delivery_date[2]) && $delivery_date[2] === "12") { echo "selected";} ?>>12</option>
+                        <option value="13" <?php if (isset($delivery_date[2]) && $delivery_date[2] === "13") { echo "selected";} ?>>13</option>
+                        <option value="14" <?php if (isset($delivery_date[2]) && $delivery_date[2] === "14") { echo "selected";} ?>>14</option>
+                        <option value="15" <?php if (isset($delivery_date[2]) && $delivery_date[2] === "15") { echo "selected";} ?>>15</option>
+                        <option value="16" <?php if (isset($delivery_date[2]) && $delivery_date[2] === "16") { echo "selected";} ?>>16</option>
+                        <option value="17" <?php if (isset($delivery_date[2]) && $delivery_date[2] === "17") { echo "selected";} ?>>17</option>
+                        <option value="18" <?php if (isset($delivery_date[2]) && $delivery_date[2] === "18") { echo "selected";} ?>>18</option>
+                        <option value="19" <?php if (isset($delivery_date[2]) && $delivery_date[2] === "19") { echo "selected";} ?>>19</option>
+                        <option value="20" <?php if (isset($delivery_date[2]) && $delivery_date[2] === "20") { echo "selected";} ?>>20</option>
+                        <option value="21" <?php if (isset($delivery_date[2]) && $delivery_date[2] === "21") { echo "selected";} ?>>21</option>
+                        <option value="22" <?php if (isset($delivery_date[2]) && $delivery_date[2] === "22") { echo "selected";} ?>>22</option>
+                        <option value="23" <?php if (isset($delivery_date[2]) && $delivery_date[2] === "23") { echo "selected";} ?>>23</option>
+                        <option value="24" <?php if (isset($delivery_date[2]) && $delivery_date[2] === "24") { echo "selected";} ?>>24</option>
+                        <option value="25" <?php if (isset($delivery_date[2]) && $delivery_date[2] === "25") { echo "selected";} ?>>25</option>
+                        <option value="26" <?php if (isset($delivery_date[2]) && $delivery_date[2] === "26") { echo "selected";} ?>>26</option>
+                        <option value="27" <?php if (isset($delivery_date[2]) && $delivery_date[2] === "27") { echo "selected";} ?>>27</option>
+                        <option value="28" <?php if (isset($delivery_date[2]) && $delivery_date[2] === "28") { echo "selected";} ?>>28</option>
+                        <option value="29" <?php if (isset($delivery_date[2]) && $delivery_date[2] === "29") { echo "selected";} ?>>29</option>
+                        <option value="30" <?php if (isset($delivery_date[2]) && $delivery_date[2] === "30") { echo "selected";} ?>>30</option>
+                        <option value="31" <?php if (isset($delivery_date[2]) && $delivery_date[2] === "31") { echo "selected";} ?>>31</option>
                     </select>
                     日
                 </div>
@@ -520,7 +729,7 @@
             <div class="form form-15">
                 <div class="row">
                 <div class="col-12 p-0"><h3 class="sub-sub-title form__item form__item-14 p-0">その他</h3><span class="any">任意</span></div>
-                    <textarea class="form__textarea form__textarea-14 col-12 m-0" name="etc" id="etc" cols="30" rows="4" placeholder="補足説明・ご質問・ご要望など"></textarea>
+                    <textarea class="form__textarea form__textarea-14 col-12 m-0" name="etc" id="etc" cols="30" rows="4" placeholder="補足説明・ご質問・ご要望など"><?php if (isset($etc)) {echo $etc;} ?></textarea>
                 </div>
             </div>
         </div>
@@ -530,13 +739,14 @@
             <div class="form form-16">
                 <div class="row">
                 <div class="col-12 p-0"><h3 class="sub-sub-title form__item form__item-15 p-0">氏名</h3><span class="mast">必須</span></div>
+                    <?php if ($error["name"] === "on") {echo "<div style='color:red' class='col-12 p-0'>*入力してください</div>";} ?>
                     <div class="row form__name_kanji col-12 m-0 mb-3 p-0">
-                        <span class="form__span-15 col-2 m-0 p-0">姓：</span><input class="form__name form__name-15 form__name-15-1 col-2" type="name" name="first_name_kanji" placeholder="山田" autocomplete="family-name">
-                        <span class="form__span-15 col-2 m-0 ml-3 p-0">名：</span><input class="form__name form__name-15 form__name-15-2 col-2" type="name" name="last_name_kanji" placeholder="太郎" autocomplete="given-name">
+                        <span class="form__span-15 col-2 m-0 p-0">姓：</span><input class="form__name form__name-15 form__name-15-1 col-2" type="name" name="name[0]" placeholder="山田" autocomplete="family-name" <?php if (isset($name[0])) {echo "value=" . $name[0];} ?>>
+                        <span class="form__span-15 col-2 m-0 ml-3 p-0">名：</span><input class="form__name form__name-15 form__name-15-2 col-2" type="name" name="name[1]" placeholder="太郎" autocomplete="given-name" <?php if (isset($name[1])) {echo "value=" . $name[1];} ?>>
                     </div>
                     <div class="row form__name_hira col-12 m-0 p-0">
-                        <span class="col-2 m-0 p-0">せい：</span><input class="form__name form__name-15 form__name-15-1 col-2" type="name" name="first_name_hirgana" placeholder="やまだ" autocomplete="family-name">
-                        <span class="col-2 m-0 ml-3 p-0">めい：</span><input class="form__name form__name-15 form__name-15-2 col-2" type="name" name="last_name_hiragana" placeholder="たろう" autocomplete="given-name">
+                        <span class="col-2 m-0 p-0">せい：</span><input class="form__name form__name-15 form__name-15-1 col-2" type="name" name="name[2]" placeholder="やまだ" autocomplete="family-name" <?php if (isset($name[2])) {echo "value=" . $name[2];} ?>>
+                        <span class="col-2 m-0 ml-3 p-0">めい：</span><input class="form__name form__name-15 form__name-15-2 col-2" type="name" name="name[3]" placeholder="たろう" autocomplete="given-name" <?php if (isset($name[3])) {echo "value=" . $name[3];} ?>>
                     </div>
                 </div>
             </div>
@@ -544,24 +754,45 @@
             <div class="form form-17">
                 <div class="row">
                 <div class="col-12 p-0"><h3 class="sub-sub-title form__item form__item-16 p-0">メールアドレス</h3><span class="mast">必須</span></div>
-                    <input class="form__email form__email-16 form__email-16-2 col-12 m-0 p-0" type="email" name="email" placeholder="example@example.com" autocomplete="email">
+                    <?php if ($error["email"] === "on") {echo "<div style='color:red' class='col-12 p-0'>*入力してください</div>";} ?>
+                    <input class="form__email form__email-16 form__email-16-2 col-12 m-0 p-0" type="email" name="email" placeholder="example@example.com" autocomplete="email" <?php if (isset($email)) {echo "value=" . $email;} ?>>
                 </div>
             </div>
 
             <div class="form form-18">
                 <div class="row">
                 <div class="col-12 p-0"><h3 class="sub-sub-title form__item form__item-17 p-0">電話番号（ハイフン無し）</h3><span class="mast">必須</span></div>
-                    <input class="form__tel form__tel-16 form__tel-16-2 col-12 m-0 p-0" type="tel" name="tel" placeholder="09012345678" autocomplete="tel">
+                    <?php if ($error["tel"] === "on") {echo "<div style='color:red' class='col-12 p-0'>*入力してください</div>";} ?>
+                    <input class="form__tel form__tel-16 form__tel-16-2 col-12 m-0 p-0" type="tel" name="tel" placeholder="09012345678" autocomplete="tel" <?php if (isset($tel)) {echo "value=" . $tel;} ?>>
                 </div>
             </div>
 
             <div class="form form-19">
                 <div class="row">
                 <div class="col-12 p-0"><h3 class="sub-sub-title form__item form__item-18 p-0">住所</h3><span class="mast">必須</span></div>
-                        <div class="row col-12 m-0 p-0"><span class="col-3 m-0 p-0">郵便番号：</span><input class="form__address form__address-18 form__address-18-1 col-6 p-0" type="text" name="address_zip" placeholder="1234567（ハイフンなし7桁）" autocomplete="postal-code" onKeyUp="AjaxZip3.zip2addr(this,'','address_prefecture','address_city');"></div>
-                        <div class="row col-12 m-0 p-0"><span class="col-3 m-0 p-0">都道府県：</span><input class="form__address form__address-18 form__address-18-2 col-9 p-0" type="text" name="address_prefecture"></div>
-                        <div class="row col-12 m-0 p-0"><span class="col-3 m-0 p-0">市区町村：</span><input class="form__address form__address-18 form__address-18-3 col-9 p-0" type="text" name="address_city"></div>
-                        <div class="row col-12 m-0 p-0"><span class="col-3 m-0 p-0">番地以降：</span><input class="form__address form__address-18 form__address-18-4 col-9 p-0" type="text" name="address_last"></div>
+                    <?php if ($error["address"] === "on") {echo "<div style='color:red' class='col-12 p-0'>*入力してください</div>";} ?>
+                        <div class="row col-12 m-0 p-0"><span class="col-3 m-0 p-0">郵便番号：</span><input class="form__address form__address-18 form__address-18-1 col-6 p-0" type="text" name="address[0]" placeholder="1234567（ハイフンなし7桁）" autocomplete="postal-code" onKeyUp="AjaxZip3.zip2addr(this,'','address[1]','address[2]');" <?php if (isset($address[0])) {echo "value=" . $address[0];} ?>></div>
+                        <div class="row col-12 m-0 p-0"><span class="col-3 m-0 p-0">都道府県：</span><input class="form__address form__address-18 form__address-18-2 col-9 p-0" type="text" name="address[1]" <?php if (isset($address[1])) {echo "value=" . $address[1];} ?>></div>
+                        <div class="row col-12 m-0 p-0"><span class="col-3 m-0 p-0">市区町村：</span><input class="form__address form__address-18 form__address-18-3 col-9 p-0" type="text" name="address[2]" <?php if (isset($address[2])) {echo "value=" . $address[2];} ?>></div>
+                        <div class="row col-12 m-0 p-0"><span class="col-3 m-0 p-0">番地以降：</span><input class="form__address form__address-18 form__address-18-4 col-9 p-0" type="text" name="address[3]" <?php if (isset($address[3])) {echo "value=" . $address[3];} ?>></div>
+                </div>
+            </div>
+
+            <div class="form form-20">
+                <div class="row">
+                <div class="col-12 p-0"><h3 class="sub-sub-title form__item form__item-20 p-0">個人情報の取扱いについて</h3><span class="mast">必須</span></div>
+                    <?php if ($error["agree"] === "on") {echo "<div style='color:red' class='col-12 p-0'>*同意してください</div>";} ?>
+                    <input class="agree" id="agree" type="checkbox" name="agree"><label class="form__label" for="agree">同意する</label>
+                    <div class="personal-infomation col-12 m-0 p-0">
+                        個人情報の取扱いについて<br>
+                        ご記入いただいた個人情報は、お問い合わせへの対応、および確認に利用します。また、この目的のためにお問い合わせの記録を残すことがあります。<br>
+                        取得した個人情報は法令等による場合を除いて、第三者に提供することはありません。<br>
+                        取得した個人情報の取扱いを委託することはありません。<br>
+                        ご本人からの求めにより、保有する開示対象個人情報の利用目的の通知・開示・内容の訂正・追加または削除・利用の停止・消去および第三者への提供の停止に応じます。<br>
+                        本ページでは、クッキーやウェブ・ビーコンを使用するなどして、本人が容易に認識できない方法により個人情報を取得することはありません。<br>
+                        <br>
+                        上記の「個人情報の取扱いについて」に同意いただいた上で「同意する」のチェックボックスにチェックを入れ「送信」ボタンをクリックしてください。
+                    </div>
                 </div>
             </div>
 
@@ -569,6 +800,11 @@
                 <input class="col-6 mx-auto mb-4" id="submit" type="submit" name="send">
             </div>
         </div>
+
+        <footer>
+            <p>Webサイト制作者：浅井 元輝</p>
+            <p>連絡先：g.asai.bml@gmail.com</p>
+        </footer>
     </form>
 
 
