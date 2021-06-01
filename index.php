@@ -747,12 +747,12 @@
                 <div class="col-12 p-0"><h3 class="sub-sub-title form__item form__item-15 p-0">氏名</h3><span class="mast">必須</span></div>
                     <?php if ($error["name"] === "on") {echo "<div style='color:red' class='col-12 p-0'>*入力してください</div>";} ?>
                     <div class="row form__name_kanji col-12 m-0 mb-3 p-0">
-                        <span class="form__span-15 col-2 m-0 p-0">姓：</span><input class="form__name form__name-15 form__name-15-1 col-2" type="name" name="name[0]" placeholder="山田" autocomplete="family-name" <?php if (isset($name[0])) {echo "value=" . $name[0];} ?>>
-                        <span class="form__span-15 col-2 m-0 ml-3 p-0">名：</span><input class="form__name form__name-15 form__name-15-2 col-2" type="name" name="name[1]" placeholder="太郎" autocomplete="given-name" <?php if (isset($name[1])) {echo "value=" . $name[1];} ?>>
+                        <span class="form__span-15 form__span-15-1">姓：</span><input class="form__name form__name-15 form__name-15-1" type="name" name="name[0]" placeholder="山田" autocomplete="family-name" <?php if (isset($name[0])) {echo "value=" . $name[0];} ?>>
+                        <span class="form__span-15 form__span-15-2">名：</span><input class="form__name form__name-15 form__name-15-2" type="name" name="name[1]" placeholder="太郎" autocomplete="given-name" <?php if (isset($name[1])) {echo "value=" . $name[1];} ?>>
                     </div>
                     <div class="row form__name_hira col-12 m-0 p-0">
-                        <span class="col-2 m-0 p-0">せい：</span><input class="form__name form__name-15 form__name-15-1 col-2" type="name" name="name[2]" placeholder="やまだ" autocomplete="family-name" <?php if (isset($name[2])) {echo "value=" . $name[2];} ?>>
-                        <span class="col-2 m-0 ml-3 p-0">めい：</span><input class="form__name form__name-15 form__name-15-2 col-2" type="name" name="name[3]" placeholder="たろう" autocomplete="given-name" <?php if (isset($name[3])) {echo "value=" . $name[3];} ?>>
+                        <span class="form__span-15 form__span-15-3">せい：</span><input class="form__name form__name-15 form__name-15-3" type="name" name="name[2]" placeholder="やまだ" autocomplete="family-name" <?php if (isset($name[2])) {echo "value=" . $name[2];} ?>>
+                        <span class="form__span-15 form__span-15-4">めい：</span><input class="form__name form__name-15 form__name-15-4" type="name" name="name[3]" placeholder="たろう" autocomplete="given-name" <?php if (isset($name[3])) {echo "value=" . $name[3];} ?>>
                     </div>
                 </div>
             </div>
@@ -775,12 +775,12 @@
 
             <div class="form form-19">
                 <div class="row">
-                <div class="col-12 p-0"><h3 class="sub-sub-title form__item form__item-18 p-0">住所</h3><span class="mast">必須</span></div>
+                <div class="col-12 p-0"><h3 class="sub-sub-title form__item form__item-19 p-0">住所</h3><span class="mast">必須</span></div>
                     <?php if ($error["address"] === "on") {echo "<div style='color:red' class='col-12 p-0'>*入力してください</div>";} ?>
-                        <div class="row col-12 m-0 p-0"><span class="col-3 m-0 p-0">郵便番号：</span><input class="form__address form__address-18 form__address-18-1 col-6 p-0" type="text" name="address[0]" placeholder="1234567（ハイフンなし7桁）" autocomplete="postal-code" onKeyUp="AjaxZip3.zip2addr(this,'','address[1]','address[2]');" <?php if (isset($address[0])) {echo "value=" . $address[0];} ?>></div>
-                        <div class="row col-12 m-0 p-0"><span class="col-3 m-0 p-0">都道府県：</span><input class="form__address form__address-18 form__address-18-2 col-9 p-0" type="text" name="address[1]" <?php if (isset($address[1])) {echo "value=" . $address[1];} ?>></div>
-                        <div class="row col-12 m-0 p-0"><span class="col-3 m-0 p-0">市区町村：</span><input class="form__address form__address-18 form__address-18-3 col-9 p-0" type="text" name="address[2]" <?php if (isset($address[2])) {echo "value=" . $address[2];} ?>></div>
-                        <div class="row col-12 m-0 p-0"><span class="col-3 m-0 p-0">番地以降：</span><input class="form__address form__address-18 form__address-18-4 col-9 p-0" type="text" name="address[3]" <?php if (isset($address[3])) {echo "value=" . $address[3];} ?>></div>
+                        <div class="row form-19-address col-12 p-0"><span class="form__span-19 form__span-15-1">郵便番号：</span><input class="form__address form__address-19 form__address-19-1" type="text" name="address[0]" placeholder="1234567（ハイフンなし7桁）" autocomplete="postal-code" onKeyUp="AjaxZip3.zip2addr(this,'','address[1]','address[2]');" <?php if (isset($address[0])) {echo "value=" . $address[0];} ?>></div>
+                        <div class="row form-19-address col-12 p-0"><span class="form__span-19 form__span-15-2">都道府県：</span><input class="form__address form__address-19 form__address-19-2" type="text" name="address[1]" <?php if (isset($address[1])) {echo "value=" . $address[1];} ?>></div>
+                        <div class="row form-19-address col-12 p-0"><span class="form__span-19 form__span-15-3">市区町村：</span><input class="form__address form__address-19 form__address-19-3" type="text" name="address[2]" <?php if (isset($address[2])) {echo "value=" . $address[2];} ?>></div>
+                        <div class="row form-19-address col-12 p-0"><span class="form__span-19 form__span-15-4">番地以降：</span><input class="form__address form__address-19 form__address-19-4" type="text" name="address[3]" <?php if (isset($address[3])) {echo "value=" . $address[3];} ?>></div>
                 </div>
             </div>
 

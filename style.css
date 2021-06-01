@@ -68,22 +68,40 @@ body {
     padding: 4px 8px !important;
 }
 
-.form__name-15 {
-    padding: 0 !important;
-    margin-left: -16px;
+.form__span-15 {
+    width: 13%;
+    max-width: 45px;
+    min-width: 36px;
 }
 
-.form__address-18 {
-    margin-bottom: 8px;
+.form__name-15 {
+    padding: 0 !important;
+    min-width: 70px;
+    max-width: 100px;
+    margin-right: 16px;
+}
+
+.form__address-19 {
+    margin-bottom: 8px !important;
+    margin-left: 8px !important;
+    width: 60%;
+}
+
+.form__address-19-1 {
+    max-width: 170px;
+}
+
+.form__address-19-2,
+.form__address-19-3,
+.form__address-19-4 {
+    max-width: 350px;
 }
 
 #submit {
     background-color: tomato;
-    /* width: 50%; */
     height: 40px;
     border-radius: 8px;
-    /* margin: 0 auto 24px auto;
-    display: inherit; */
+    max-width: 150px;
 }
 
 .personal-infomation {
@@ -101,3 +119,48 @@ footer p {
     margin: 0;
 }
 
+@media screen and (min-width: 576px) {
+    body {
+        width: 60%;
+    }
+
+    .form__span-15 {
+        /* width: 12%; */
+    }
+    
+    .form__name-15 {
+        /* padding: 0 !important;
+        width: 30%;
+        margin-right: 16px; */
+    }
+}
+
+@media screen and (min-width: 768px) {
+    body {
+        width: 60%;
+    }
+
+    .form__span-15 {
+        /* width: 8%; */
+    }
+    
+    .form__name-15 {
+        /* padding: 0 !important;
+        width: 20%;
+        margin-right: 16px; */
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .form__name-15 {
+        /* padding: 0 !important;
+        width: 15%;
+        margin-right: 16px; */
+    }
+}
+
+@media screen and (min-width: 1250px) {
+    .form__span-15 {
+        /* width: 5%; */
+    }
+}
