@@ -76,6 +76,7 @@ body {
 
 .form__name-15 {
     padding: 0 !important;
+    width: 28%;
     min-width: 70px;
     max-width: 100px;
     margin-right: 16px;
