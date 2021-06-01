@@ -124,44 +124,10 @@ footer p {
     body {
         width: 60%;
     }
-
-    .form__span-15 {
-        /* width: 12%; */
-    }
-    
-    .form__name-15 {
-        /* padding: 0 !important;
-        width: 30%;
-        margin-right: 16px; */
-    }
 }
 
 @media screen and (min-width: 768px) {
     body {
         width: 60%;
-    }
-
-    .form__span-15 {
-        /* width: 8%; */
-    }
-    
-    .form__name-15 {
-        /* padding: 0 !important;
-        width: 20%;
-        margin-right: 16px; */
-    }
-}
-
-@media screen and (min-width: 1024px) {
-    .form__name-15 {
-        /* padding: 0 !important;
-        width: 15%;
-        margin-right: 16px; */
-    }
-}
-
-@media screen and (min-width: 1250px) {
-    .form__span-15 {
-        /* width: 5%; */
     }
 }
